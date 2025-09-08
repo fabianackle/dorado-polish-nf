@@ -1,8 +1,9 @@
 #!/usr/bin/env nextflow
 workflow {
     bam_ch = Channel.fromPath(params.bam)
+    bai_ch = Channel.fromPath(params.bai)
     reference_ch = Channel.fromPath(params.reference)
-    DORADO_POLISH(bam_ch, reference_ch)
+    DORADO_POLISH(bam_ch, bai_ch, reference_ch)
 }
 
 process DORADO_POLISH {
@@ -17,6 +18,7 @@ process DORADO_POLISH {
 
     input:
     path bam
+    path bai
     path reference
 
     output:
