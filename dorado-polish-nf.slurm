@@ -12,6 +12,6 @@ conda activate nextflow
 
 nextflow run main.nf \
     -resume \
-    -param-file params.json \
+    -params-file params.json \
     -with-report \
     -ansi-log false
