@@ -1,0 +1,6 @@
+{
+    "sample_id": "experiment",
+    "bam": "data/bam.bam",
+    "reference": "data/reference.fasta",
+    "outdir": "results"
+}
