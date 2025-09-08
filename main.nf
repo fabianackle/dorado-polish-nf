@@ -1,6 +1,8 @@
 #!/usr/bin/env nextflow
 workflow {
-    DORADO_POLISH()
+    bam_ch = Channel.fromPath(params.bam)
+    reference_ch = Channel.fromPath(params.reference)
+    DORADO_POLISH(bam_ch, reference_ch)
 }
 
 process DORADO_POLISH {
@@ -13,9 +15,16 @@ process DORADO_POLISH {
 
     publishDir params.outdir, mode: 'copy', pattern: '*.fastq.gz'
 
+    input:
+    path bam
+    path reference
+
+    output:
+    path "${params.sample_id}_polished.fastq"
+
     script:
     """
-    dorado polish ${params.bam} ${params.reference} \
+    dorado polish ${bam} ${reference} \
         --qualities \
         --ignore-read-groups \
         --batchsize 250 \
