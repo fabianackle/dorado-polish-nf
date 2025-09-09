@@ -22,7 +22,7 @@ process DORADO_POLISH {
     path reference
 
     output:
-    path "${params.sample_id}_polished.fastq"
+    path "${params.sample_id}_polished.fastq.gz"
 
     script:
     """
